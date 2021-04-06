@@ -1,0 +1,42 @@
+<h1 class="mt-4">Tipo Despesa</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ tipoDespesa.id ? 'Consulta' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #empresaForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Empresa salva/atualizada com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="tipoDespesa.id">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input readonly type="text" [ngModel]="tipoDespesa.id" name="id" class="form-control"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: *</label>
+          <input readonly type="text" class="form-control"
+                 [(ngModel)]="tipoDespesa.nome" name="nome"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

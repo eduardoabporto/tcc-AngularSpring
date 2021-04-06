@@ -1,0 +1,107 @@
+<h1 class="mt-4">Empresa</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+  <form #consultaForm="ngForm" (submit)="consultar()">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="inputNome">Nome Empresa:</label>
+        <input type="text" [(ngModel)]="nome"
+               name="nome" class="form-control"
+               id="inputNome">
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-2">
+        <button class="btn btn-warning" (click)="novoCadastro()">
+          <i class="fa fa-plus"></i> Novo
+        </button>
+        <button (click)="imprimeRelatorio()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                style="margin-left: 5px">
+          PDF
+        </button>
+      </div>
+    </div>
+  </form>
+  <br/>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+        {{ mensagemSucesso }}
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+        {{ mensagemErro }}
+      </div>
+    </div>
+    <div>
+      <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>CNPJ</th>
+          <th>Data Cadastro</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <tr *ngFor="let empresa of empresa | filter:nome | paginate: { itemsPerPage: 5, currentPage: paginaAtual }">
+          <td>{{ empresa.id }}</td>
+          <td>{{ empresa.nome }}</td>
+          <td>{{ empresa.cnpj | cnpj}}</td>
+          <td>{{ empresa.dataCadastro | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <button class="btn btn-info" routerLink="/empresa/form/read/{{ empresa.id }}">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="btn btn-primary" routerLink="/empresa/form/{{ empresa.id }}">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-danger" (click)="preparaDelecao(empresa)" data-toggle="modal"
+                    data-target="#modalDelecao">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+        <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+      </table>
+    </div>
+  </div>
+  <div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+        </div>
+        <div class="modal-body" *ngIf="empresaSelecionada">
+          Confirma a deleção do(a) Empresa {{ empresaSelecionada.nome }}?
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" (click)="deletarEmpresa()" data-dismiss="modal">Confirma</button>
+          <button class="btn btn-danger" data-dismiss="modal">Cancela</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" style="min-width: 90%;min-height: 90%;height: 90%">
+    <div class="modal-content">
+      <div class="modal-body">
+        <iframe id="pdf" width="100%" height="500" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

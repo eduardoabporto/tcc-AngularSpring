@@ -1,0 +1,86 @@
+<h1 class="mt-4" xmlns="http://www.w3.org/1999/html">Projeto</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ projetoSelecionado.id ? 'Consulta' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #formRead="ngForm" (submit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Projeto salvo/atualizado com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <input readonly class="form-control"
+                   [(ngModel)]="projetoSelecionado.cliente.nome" type="text"
+                   name="cliente" id="inputCliente" >
+          </div>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Nome</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="projetoSelecionado.nome" type="text"
+                 name="nome" id="inputNome">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Data</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="projetoSelecionado.data" type="date"
+                 name="data" id="inputData" >
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Horas Traslado</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="projetoSelecionado.horaTrasl" type="time"
+                 name="horaTrasl" id="inputHoraTrasl">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Horas Desconto</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="projetoSelecionado.horaDesc" type="time"
+                 name="horaDescb" id="inputHoraDesc">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Valor Hora:</label>
+          <input currencyMask readonly class="form-control"
+                 [(ngModel)]="projetoSelecionado.valorHora" type="text"
+                 name="valor" id="inputValorHora" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="button" routerLink="/projeto/lista" class="btn btn-danger ml-1">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

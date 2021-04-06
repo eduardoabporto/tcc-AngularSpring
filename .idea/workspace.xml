@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d3d54d13-fa5a-4234-a070-8c11ef00b349" name="Default Changelist" comment="Finalização Cadastro" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Java" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="1osSVKBNgjz9fLuhgvGmrFIde5D" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Java" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.55632186" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="io.github.eduardoabporto.tcc.model.entity" />
+      <recent name="io.github.eduardoabporto" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\eduardo\Documents\MBA\PUCMinas\tcc\src\main\resources" />
+      <recent name="D:\eduardo\Documents\MBA\PUCMinas\tcc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\eduardo\Documents\MBA\PUCMinas\tcc\Java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TccApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="tcc" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.github.eduardoabporto.tcc.TccApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.TccApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d3d54d13-fa5a-4234-a070-8c11ef00b349" name="Default Changelist" comment="" />
+      <created>1614073828906</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614073828906</updated>
+      <workItem from="1614073831192" duration="2820000" />
+      <workItem from="1614082046048" duration="95000" />
+      <workItem from="1614082148280" duration="15025000" />
+      <workItem from="1614137222728" duration="75000" />
+      <workItem from="1614137323063" duration="537000" />
+      <workItem from="1614137880481" duration="8766000" />
+      <workItem from="1614185761745" duration="2891000" />
+      <workItem from="1614189812059" duration="10713000" />
+      <workItem from="1614214954490" duration="186000" />
+      <workItem from="1614215164992" duration="1229000" />
+      <workItem from="1614216972335" duration="213000" />
+      <workItem from="1614217219635" duration="730000" />
+      <workItem from="1614217973301" duration="6308000" />
+      <workItem from="1614224536260" duration="52000" />
+    </task>
+    <task id="LOCAL-00001" summary="Ajuste Controller">
+      <created>1614212158322</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614212158322</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finalização Cadastro Cliente">
+      <created>1614223653611</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614223653612</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finalização Cadastro Cliente">
+      <created>1614223663529</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614223663529</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Ajuste Controller" />
+    <MESSAGE value="Finalização Cadastro Cliente" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalização Cadastro Cliente" />
+  </component>
+</project>

@@ -1,0 +1,146 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Cliente salvo/atualizado com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="cliente.id">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true"/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data Cadastro:</label>
+          <input type="date" class="form-control" name="dataCadastro" [ngModel]="cliente.dataCadastro" disabled="true"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: *</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.nome" name="nome"/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome Fantasia: *</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.nomeFantasia" name="nomeFantasia"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CNPJ*:</label>
+          <input type="text" mask="CPF_CNPJ" class="form-control"
+                 [(ngModel)]="cliente.cnpj" name="cnpj"/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>email*:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.email" name="email"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Endereço:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.endereco" name="endereco"/>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Numero:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.numero" name="numero"/>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Complemento:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.complemento" name="complemento"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Bairro:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.bairro" name="bairro"/>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label>Cidade:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.cidade" name="cidade"/>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <label>UF:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.estado" name="estado"/>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>CEP:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.cep" name="cep"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label>Responsável:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.pessoaResp" name="responsavel"/>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Telefone:</label>
+          <input type="text" class="form-control"
+                 [(ngModel)]="cliente.telefone" name="telefone"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+        <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

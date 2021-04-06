@@ -1,0 +1,206 @@
+<h1 class="mt-4" xmlns="http://www.w3.org/1999/html">Despesas</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ despesaSelecionada.id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #form="ngForm" (submit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Despesa salvo/atualizado com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="despesaSelecionada.id; then thenBlock else elseBlock"></div>
+
+    <ng-template #thenBlock>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Empresa: </label>
+            <input class="form-control"
+                   [(ngModel)]="despesaSelecionada.empresa.nome" type="text"
+                   name="empresa" id="inputEmpresa" disabled="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <input class="form-control"
+                   [(ngModel)]="despesaSelecionada.cliente.nome" type="text"
+                   name="cliente" id="inputCliente" disabled="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Projeto: </label>
+            <input class="form-control"
+                   [(ngModel)]="despesaSelecionada.projeto.nome" type="text"
+                   name="projeto" id="inputProjeto" disabled="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tipo Despesa: </label>
+            <input class="form-control"
+                   [(ngModel)]="despesaSelecionada.tipoDespesa.nome" type="text"
+                   name="tipoDespesa" id="inputTipoDespesa" disabled="true">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Empresa: </label>
+            <select class="form-control"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="despesaSelecionada.idEmpresa">
+              <option value="">Selecione...</option>
+              <option *ngFor="let empresa of empresa" [ngValue]="empresa.id">
+                {{ empresa.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <select class="form-control"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="despesaSelecionada.idCliente"
+                    (change)="consultarProjeto(despesaSelecionada.idCliente)">
+              <option value="">Selecione...</option>
+              <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">
+                {{ cliente.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Projeto: </label>
+            <select
+              class="form-control"
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="despesaSelecionada.idProjeto">
+              <option value="">Selecione...</option>
+              <option *ngFor="let projeto of projetos" [ngValue]="projeto.id">
+                {{ projeto.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tipo Despesa: </label>
+            <select
+              class="form-control"
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="despesaSelecionada.idTipoDespesa">
+              <option value="">Selecione...</option>
+              <option *ngFor="let tipoDespesa of tipoDespesa" [ngValue]="tipoDespesa.id">
+                {{ tipoDespesa.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Descrição</label>
+          <textarea class="form-control"
+                    [(ngModel)]="despesaSelecionada.descricao" type="text"
+                    name="descricao" id="inputDescricao"></textarea>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Data</label>
+          <input class="form-control"
+                 [(ngModel)]="despesaSelecionada.data" type="date"
+                 name="data" id="inputData" >
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Valor Despesa:</label>
+          <input currencyMask class="form-control"
+                 [(ngModel)]="despesaSelecionada.valorDespesa" type="text"
+                 name="valor" id="inputValorHora" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Usuário</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="despesaSelecionada.userLog" type="text"
+                 name="userLog" id="inputUserLog">
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for=""> Atividade remota? </label>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="despesaSelecionada.atendimento" value="sim"
+                     type="radio" name="atendimento" id="flexRadioDefault1" >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Sim
+              </label>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="despesaSelecionada.atendimento" value="nao"
+                     type="radio" name="atendimento" id="flexRadioDefault2" checked >
+              <label class="form-check-label" for="flexRadioDefault2">
+                Não
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success"*ngIf="!despesaSelecionada.id">
+          <i class="fa fa-save"></i>
+          Salvar
+        </button>
+        <button type="submit" class="btn btn-primary" *ngIf="despesaSelecionada.id">
+          <i class="fa fa-sync-alt"></i>
+          Atualizar
+        </button>
+        <button type="button" routerLink="/despesa/lista" class="btn btn-danger ml-1">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

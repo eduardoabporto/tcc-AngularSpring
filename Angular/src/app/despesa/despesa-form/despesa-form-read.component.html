@@ -1,0 +1,122 @@
+<h1 class="mt-4" xmlns="http://www.w3.org/1999/html">Despesas</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ despesaSelecionada.id ? 'Consulta' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #formRead="ngForm" (submit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Empresa: </label>
+            <input readonly class="form-control"
+                   [(ngModel)]="despesaSelecionada.empresa.nome" type="text"
+                   name="empresa" id="inputEmpresa">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <input  readonly class="form-control"
+                   [(ngModel)]="despesaSelecionada.cliente.nome" type="text"
+                   name="cliente" id="inputCliente" >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Projeto: </label>
+            <input  readonly class="form-control"
+                   [(ngModel)]="despesaSelecionada.projeto.nome" type="text"
+                   name="projeto" id="inputProjeto" >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Tipo Despesa: </label>
+            <input  readonly class="form-control"
+                   [(ngModel)]="despesaSelecionada.tipoDespesa.nome" type="text"
+                   name="tipoDespesa" id="inputTipoDespesa" >
+          </div>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Descrição</label>
+          <textarea readonly class="form-control"
+                    [(ngModel)]="despesaSelecionada.descricao" type="text"
+                    name="descricao" id="inputDescricao"></textarea>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Data</label>
+          <input  readonly class="form-control"
+                 [(ngModel)]="despesaSelecionada.data" type="date"
+                 name="data" id="inputData" >
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Valor Despesa:</label>
+          <input  currencyMask readonly class="form-control"
+                 [(ngModel)]="despesaSelecionada.valorDespesa" type="number"
+                 name="valor" id="inputValorHora" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Usuário</label>
+          <input  readonly readonly class="form-control"
+                 [(ngModel)]="despesaSelecionada.userLog" type="text"
+                 name="userLog" id="inputUserLog">
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for=""> Atividade remota? </label>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="despesaSelecionada.atendimento" value="sim"
+                     type="radio" name="atendimento" id="flexRadioDefault1"  disabled="true">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Sim
+              </label>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="despesaSelecionada.atendimento" value="nao"
+                     type="radio" name="atendimento" id="flexRadioDefault2" checked  disabled="true">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Não
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="button" routerLink="/despesa/lista" class="btn btn-danger ml-1">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

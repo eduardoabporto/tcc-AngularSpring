@@ -1,0 +1,233 @@
+<h1 class="mt-4" xmlns="http://www.w3.org/1999/html">Ordem Serviço</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ servico.id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #formOS="ngForm" (submit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Ordem de Serviço salvo/atualizado com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="servico.id; then thenBlock else elseBlock"></div>
+
+    <ng-template #thenBlock>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Empresa: </label>
+            <input class="form-control"
+                   [(ngModel)]="servico.empresa.nome" type="text"
+                   name="empresa" id="inputEmpresa" disabled="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <input class="form-control"
+                   [(ngModel)]="servico.cliente.nome" type="text"
+                   name="cliente" id="inputCliente" disabled="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Projeto: </label>
+            <input class="form-control"
+                   [(ngModel)]="servico.projeto.nome" type="text"
+                   name="projeto" id="inputProjeto" disabled="true">
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Empresa: </label>
+            <select class="form-control"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="servico.idEmpresa">
+              <option value="">Selecione...</option>
+              <option *ngFor="let empresa of empresa" [ngValue]="empresa.id">
+                {{ empresa.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <select class="form-control"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="servico.idCliente"
+                    (change)="consultarProjeto(servico.idCliente)">
+              <option value="">Selecione...</option>
+              <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">
+                {{ cliente.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Projeto: </label>
+            <select
+              class="form-control"
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="servico.idProjeto">
+              <option value="">Selecione...</option>
+              <option *ngFor="let projeto of projetos" [ngValue]="projeto.id">
+                {{ projeto.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Assunto</label>
+          <input class="form-control"
+                 [(ngModel)]="servico.assunto" type="text"
+                 name="assunto" id="inputAssunto">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Descrição</label>
+          <textarea class="form-control"
+                    [(ngModel)]="servico.descricao" type="text"
+                    name="descricao" id="inputDescricao"></textarea>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Data</label>
+          <input class="form-control"
+                 [(ngModel)]="servico.data" type="date"
+                 name="data" id="inputData" >
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Inicial</label>
+          <input class="form-control"
+                 [(ngModel)]="servico.horaInicial"
+                 type="time"
+                 name="horaInicial" id="inputHoraInicial">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Final</label>
+          <input class="form-control"
+                 [(ngModel)]="servico.horaFinal" type="time"
+                 (ngModelChange)="consultarHorasProjeto(servico.idProjeto)"
+                 name="horaFinal" id="inputHoraFinal">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Traslado</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaTrasl" type="time"
+                 name="horaTrasl" id="inputHoraTrasl">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Desconto</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaDesc" type="time"
+                 name="horaDesc" id="inputHoraDesc">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Horas trabalhadas</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaTrab" type="time"
+                 name="horaTrab" id="inputHoraTrab" value="">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Usuário</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.userLog" type="text"
+                 name="userLog" id="inputUserLog">
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for=""> Atividade remota? </label>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="servico.atendimento" value="sim"
+                     type="radio" name="atendimento" id="flexRadioDefault1" >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Sim
+              </label>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="servico.atendimento" value="nao"
+                     type="radio" name="atendimento" id="flexRadioDefault2" checked >
+              <label class="form-check-label" for="flexRadioDefault2">
+                Não
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-success"*ngIf="!servico.id">
+          <i class="fa fa-save"></i>
+          Salvar
+        </button>
+        <button type="submit" class="btn btn-primary" *ngIf="servico.id">
+          <i class="fa fa-sync-alt"></i>
+          Atualizar
+        </button>
+        <button type="button" routerLink="/ordem-servico/lista" class="btn btn-danger ml-1">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

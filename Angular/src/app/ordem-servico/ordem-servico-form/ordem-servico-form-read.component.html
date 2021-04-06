@@ -1,0 +1,174 @@
+<h1 class="mt-4" xmlns="http://www.w3.org/1999/html">Ordem Serviço</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">{{ servico.id ? 'Consulta' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+  <form #formRead="ngForm" (submit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Ordem de Serviço salvo/atualizado com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+          {{erro}}
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Empresa: </label>
+            <input readonly class="form-control"
+                   [(ngModel)]="servico.empresa.nome" type="text"
+                   name="empresa" id="inputEmpresa" >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Cliente: </label>
+            <input readonly class="form-control"
+                   [(ngModel)]="servico.cliente.nome" type="text"
+                   name="cliente" id="inputCliente" >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Projeto: </label>
+            <input readonly class="form-control"
+                   [(ngModel)]="servico.projeto.nome" type="text"
+                   name="projeto" id="inputProjeto" >
+          </div>
+        </div>
+      </div>
+
+     <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Assunto</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.assunto" type="text"
+                 name="assunto" id="inputAssunto">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="">Descrição</label>
+          <textarea readonly class="form-control"
+                    [(ngModel)]="servico.descricao" type="text"
+                    name="descricao" id="inputDescricao"></textarea>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Data</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.data" type="date"
+                 name="data" id="inputData" >
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Inicial</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaInicial"
+                 type="time"
+                 name="horaInicial" id="inputHoraInicial">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Final</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaFinal" type="time"
+                 (ngModelChange)="consultarHorasProjeto(servico.idProjeto)"
+                 name="horaFinal" id="inputHoraFinal">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Traslado</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaTrasl" type="time"
+                 name="horaTrasl" id="inputHoraTrasl">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Hora Desconto</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaDesc" type="time"
+                 name="horaDesc" id="inputHoraDesc">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Horas trabalhadas</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.horaTrab" type="time"
+                 name="horaTrab" id="inputHoraTrab" value="">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="">Usuário</label>
+          <input readonly class="form-control"
+                 [(ngModel)]="servico.userLog" type="text"
+                 name="userLog" id="inputUserLog">
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for=""> Atividade remota? </label>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="servico.atendimento" value="sim"
+                     type="radio" name="atendimento" id="flexRadioDefault1" disabled="true">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Sim
+              </label>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-check">
+              <input class="form-check-input"
+                     [(ngModel)]="servico.atendimento" value="nao"
+                     type="radio" name="atendimento" id="flexRadioDefault2" checked disabled="true">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Não
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <button type="button" routerLink="/ordem-servico/lista" class="btn btn-danger ml-1">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
